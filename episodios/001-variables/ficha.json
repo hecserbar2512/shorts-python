@@ -1,0 +1,81 @@
+{
+  "id": "001",
+  "concepto": "Variables",
+  "lenguaje": "python",
+  "voz": "propia",
+  "bloques": [
+    {
+      "id": 1,
+      "texto": "Casi todo en programación empieza con una idea: guardar datos. Y para eso existen las variables.",
+      "codigo_en_pantalla": [],
+      "salida": null
+    },
+    {
+      "id": 2,
+      "texto": "Una variable es un nombre que le pones a un dato para usarlo después. Como una caja con etiqueta: aquí, edad guarda el veinticinco.",
+      "codigo_en_pantalla": [
+        "edad = 25"
+      ],
+      "salida": null
+    },
+    {
+      "id": 3,
+      "texto": "Fíjate: el igual no significa igualdad. Significa guarda este valor con este nombre.",
+      "codigo_en_pantalla": [
+        "edad = 25"
+      ],
+      "salida": null
+    },
+    {
+      "id": 4,
+      "texto": "Ahora puedo usar la caja cuando quiera. Si pido a Python que muestre edad, me enseña lo que hay dentro.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "print(edad)"
+      ],
+      "salida": "25"
+    },
+    {
+      "id": 5,
+      "texto": "Y el contenido se puede cambiar. Guardo un veintiséis, y la misma variable ahora vale otra cosa.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "print(edad)",
+        "edad = 26",
+        "print(edad)"
+      ],
+      "salida": "25\n26"
+    },
+    {
+      "id": 6,
+      "texto": "Un nombre, un valor. Así de simple. En el próximo vídeo, los tipos de datos.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "print(edad)",
+        "edad = 26",
+        "print(edad)"
+      ],
+      "salida": "25\n26"
+    }
+  ],
+  "codigo_completo": "ejemplo.py",
+  "salida_esperada": "25\n26",
+  "metadatos": {
+    "titulo": "Qué es una variable en Python (en menos de 1 minuto)",
+    "descripcion": "Aprende qué es una variable en Python con un ejemplo real: cómo guardar un dato, usarlo y cambiarlo.\n\nCódigo del vídeo:\nedad = 25\nprint(edad)\nedad = 26\nprint(edad)\n\n#Shorts #Python #Programación",
+    "etiquetas": [
+      "python",
+      "variables",
+      "programación",
+      "aprender a programar",
+      "principiantes",
+      "python para principiantes"
+    ]
+  },
+  "estado": {
+    "codigo_verificado": true,
+    "audio_grabado": false,
+    "video_generado": false,
+    "publicado": false
+  }
+}
