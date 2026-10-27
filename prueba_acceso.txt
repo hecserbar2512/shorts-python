@@ -1,0 +1,2 @@
+Archivo de prueba para comprobar que Claude puede escribir en este repositorio.
+Se puede borrar sin problema.
