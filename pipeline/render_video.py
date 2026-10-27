@@ -490,9 +490,12 @@ def main():
         cmd += ["-c:a", "aac", "-b:a", "192k", "-shortest"]
     cmd += [a.salida]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-    for i in range(n):
-        p.stdin.write(fotograma(i / FPS, ctx).tobytes())
-    p.stdin.close()
+    try:
+        for i in range(n):
+            p.stdin.write(fotograma(i / FPS, ctx).tobytes())
+        p.stdin.close()
+    except BrokenPipeError:
+        pass  # ffmpeg cerró al terminar el audio (-shortest)
     p.wait()
     print("vídeo guardado:", a.salida, "| %.1f s | %d fotogramas" % (total, n))
 
