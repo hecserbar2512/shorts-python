@@ -1,0 +1,83 @@
+{
+  "id": "004",
+  "concepto": "Comparaciones",
+  "lenguaje": "python",
+  "voz": "propia",
+  "bloques": [
+    {
+      "id": 1,
+      "texto": "A veces un programa tiene que decidir. Y para decidir, primero compara.",
+      "codigo_en_pantalla": [],
+      "salida": null
+    },
+    {
+      "id": 2,
+      "texto": "Tengo edad igual a veinte. Ahora le pregunto a Python: ¿edad es mayor o igual que dieciocho?",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)"
+      ],
+      "salida": "True"
+    },
+    {
+      "id": 3,
+      "texto": "Python responde True, que significa verdadero.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)"
+      ],
+      "salida": "True"
+    },
+    {
+      "id": 4,
+      "texto": "Cuidado: para comprobar si dos valores son iguales se usan dos signos igual. Uno solo guarda, dos comparan.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)",
+        "print(edad == 18)"
+      ],
+      "salida": "True\nFalse"
+    },
+    {
+      "id": 5,
+      "texto": "Aquí la respuesta es False, falso, porque veinte no es dieciocho.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)",
+        "print(edad == 18)"
+      ],
+      "salida": "True\nFalse"
+    },
+    {
+      "id": 6,
+      "texto": "Verdadero o falso. Esa es la base para decidir. En el próximo vídeo, el if.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)",
+        "print(edad == 18)"
+      ],
+      "salida": "True\nFalse"
+    }
+  ],
+  "codigo_completo": "ejemplo.py",
+  "salida_esperada": "True\nFalse",
+  "metadatos": {
+    "titulo": "Comparaciones en Python: True y False (en menos de 1 minuto)",
+    "descripcion": "Aprende a comparar valores en Python y qué significan True y False, con la diferencia entre = e ==.\n\nCódigo del vídeo:\nedad = 20\nprint(edad >= 18)\nprint(edad == 18)\n\n#Shorts #Python #Programación",
+    "etiquetas": [
+      "python",
+      "comparaciones",
+      "booleanos",
+      "true false",
+      "programación",
+      "aprender a programar",
+      "principiantes"
+    ]
+  },
+  "estado": {
+    "codigo_verificado": true,
+    "audio_grabado": false,
+    "video_generado": false,
+    "publicado": false
+  }
+}

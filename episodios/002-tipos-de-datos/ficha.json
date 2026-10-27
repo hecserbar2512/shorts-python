@@ -1,0 +1,84 @@
+{
+  "id": "002",
+  "concepto": "Tipos de datos",
+  "lenguaje": "python",
+  "voz": "propia",
+  "bloques": [
+    {
+      "id": 1,
+      "texto": "Ya sabemos guardar datos en variables. Pero no todos los datos son iguales. Python distingue varios tipos.",
+      "codigo_en_pantalla": [],
+      "salida": null
+    },
+    {
+      "id": 2,
+      "texto": "Un número entero, como veinticinco, es de tipo int.",
+      "codigo_en_pantalla": [
+        "edad = 25"
+      ],
+      "salida": null
+    },
+    {
+      "id": 3,
+      "texto": "Un texto, como Ana, va siempre entre comillas, y es de tipo str.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "nombre = \"Ana\""
+      ],
+      "salida": null
+    },
+    {
+      "id": 4,
+      "texto": "Para ver el tipo de cualquier dato, usa type. Python te lo dice.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "nombre = \"Ana\"",
+        "print(type(edad))"
+      ],
+      "salida": "<class 'int'>"
+    },
+    {
+      "id": 5,
+      "texto": "Y con el texto, lo mismo: str. Las comillas son lo que lo distingue.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "nombre = \"Ana\"",
+        "print(type(edad))",
+        "print(type(nombre))"
+      ],
+      "salida": "<class 'int'>\n<class 'str'>"
+    },
+    {
+      "id": 6,
+      "texto": "Número o texto: Python lo sabe. En el próximo vídeo, operaciones con números.",
+      "codigo_en_pantalla": [
+        "edad = 25",
+        "nombre = \"Ana\"",
+        "print(type(edad))",
+        "print(type(nombre))"
+      ],
+      "salida": "<class 'int'>\n<class 'str'>"
+    }
+  ],
+  "codigo_completo": "ejemplo.py",
+  "salida_esperada": "<class 'int'>\n<class 'str'>",
+  "metadatos": {
+    "titulo": "Tipos de datos en Python: int y str (en menos de 1 minuto)",
+    "descripcion": "Aprende los tipos de datos básicos de Python: números enteros (int) y texto (str), y cómo ver el tipo con type().\n\nCódigo del vídeo:\nedad = 25\nnombre = \"Ana\"\nprint(type(edad))\nprint(type(nombre))\n\n#Shorts #Python #Programación",
+    "etiquetas": [
+      "python",
+      "tipos de datos",
+      "int",
+      "str",
+      "programación",
+      "aprender a programar",
+      "principiantes"
+    ]
+  },
+  "estado": {
+    "codigo_verificado": true,
+    "audio_grabado": false,
+    "video_generado": false,
+    "publicado": false
+  }
+}

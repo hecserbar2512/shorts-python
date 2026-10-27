@@ -1,0 +1,87 @@
+{
+  "id": "003",
+  "concepto": "Operaciones",
+  "lenguaje": "python",
+  "voz": "propia",
+  "bloques": [
+    {
+      "id": 1,
+      "texto": "Python también es una calculadora. Vamos a ver las operaciones básicas.",
+      "codigo_en_pantalla": [],
+      "salida": null
+    },
+    {
+      "id": 2,
+      "texto": "Guardo dos números en variables: a vale diez y b vale tres.",
+      "codigo_en_pantalla": [
+        "a = 10",
+        "b = 3"
+      ],
+      "salida": null
+    },
+    {
+      "id": 3,
+      "texto": "El signo más suma. Si muestro a más b, Python responde trece.",
+      "codigo_en_pantalla": [
+        "a = 10",
+        "b = 3",
+        "print(a + b)"
+      ],
+      "salida": "13"
+    },
+    {
+      "id": 4,
+      "texto": "El asterisco multiplica. A por b da treinta.",
+      "codigo_en_pantalla": [
+        "a = 10",
+        "b = 3",
+        "print(a + b)",
+        "print(a * b)"
+      ],
+      "salida": "13\n30"
+    },
+    {
+      "id": 5,
+      "texto": "Y lo bueno: como usamos variables, si cambias los valores, el resultado cambia solo.",
+      "codigo_en_pantalla": [
+        "a = 10",
+        "b = 3",
+        "print(a + b)",
+        "print(a * b)"
+      ],
+      "salida": "13\n30"
+    },
+    {
+      "id": 6,
+      "texto": "Más, menos, por y entre. En el próximo vídeo, las comparaciones.",
+      "codigo_en_pantalla": [
+        "a = 10",
+        "b = 3",
+        "print(a + b)",
+        "print(a * b)"
+      ],
+      "salida": "13\n30"
+    }
+  ],
+  "codigo_completo": "ejemplo.py",
+  "salida_esperada": "13\n30",
+  "metadatos": {
+    "titulo": "Operaciones con números en Python (en menos de 1 minuto)",
+    "descripcion": "Suma y multiplica en Python usando variables: cómo hacer operaciones matemáticas básicas.\n\nCódigo del vídeo:\na = 10\nb = 3\nprint(a + b)\nprint(a * b)\n\n#Shorts #Python #Programación",
+    "etiquetas": [
+      "python",
+      "operaciones",
+      "suma",
+      "multiplicación",
+      "programación",
+      "aprender a programar",
+      "principiantes"
+    ]
+  },
+  "estado": {
+    "codigo_verificado": true,
+    "audio_grabado": false,
+    "video_generado": false,
+    "publicado": false
+  }
+}
