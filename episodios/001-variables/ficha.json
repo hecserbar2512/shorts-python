@@ -16,7 +16,26 @@
       "codigo_en_pantalla": [
         "edad = 25"
       ],
-      "salida": null
+      "salida": null,
+      "momento": 0.62,
+      "anotaciones": [
+        {
+          "linea": 0,
+          "token": "edad",
+          "texto": "nombre",
+          "color": "verde",
+          "en": 0.8,
+          "hasta": 2
+        },
+        {
+          "linea": 0,
+          "token": "25",
+          "texto": "valor",
+          "color": "ambar",
+          "en": 0.88,
+          "hasta": 2
+        }
+      ]
     },
     {
       "id": 3,
@@ -24,7 +43,18 @@
       "codigo_en_pantalla": [
         "edad = 25"
       ],
-      "salida": null
+      "salida": null,
+      "anotaciones": [
+        {
+          "linea": 0,
+          "token": "=",
+          "texto": "guarda",
+          "color": "rosa",
+          "en": 0.4,
+          "hasta": 3,
+          "brillo": true
+        }
+      ]
     },
     {
       "id": 4,
@@ -33,7 +63,8 @@
         "edad = 25",
         "print(edad)"
       ],
-      "salida": "25"
+      "salida": "25",
+      "momento": 0.55
     },
     {
       "id": 5,
@@ -44,7 +75,8 @@
         "edad = 26",
         "print(edad)"
       ],
-      "salida": "25\n26"
+      "salida": "25\n26",
+      "momento": 0.35
     },
     {
       "id": 6,
@@ -77,5 +109,21 @@
     "audio_grabado": false,
     "video_generado": false,
     "publicado": false
+  },
+  "visual": {
+    "tipo": "caja_variable",
+    "titular": [
+      "¿Qué es una",
+      "variable?"
+    ],
+    "entra_bloque": 2,
+    "etiqueta_en": 0.35,
+    "sale_bloque": 6,
+    "cierre": {
+      "izquierda": "nombre",
+      "derecha": "valor",
+      "texto": "= variable",
+      "siguiente": "Próximo: tipos de datos"
+    }
   }
 }
