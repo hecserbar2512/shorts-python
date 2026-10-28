@@ -8,7 +8,8 @@
       "id": 1,
       "texto": "Python también es una calculadora. Vamos a ver las operaciones básicas.",
       "codigo_en_pantalla": [],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 2,
@@ -17,7 +18,8 @@
         "a = 10",
         "b = 3"
       ],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 3,
@@ -27,7 +29,8 @@
         "b = 3",
         "print(a + b)"
       ],
-      "salida": "13"
+      "salida": "13",
+      "momento": 0.5
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
         "print(a + b)",
         "print(a * b)"
       ],
-      "salida": "13\n30"
+      "salida": "13\n30",
+      "momento": 0.5
     },
     {
       "id": 5,
@@ -49,7 +53,8 @@
         "print(a + b)",
         "print(a * b)"
       ],
-      "salida": "13\n30"
+      "salida": "13\n30",
+      "momento": 0.5
     },
     {
       "id": 6,
@@ -60,7 +65,8 @@
         "print(a + b)",
         "print(a * b)"
       ],
-      "salida": "13\n30"
+      "salida": "13\n30",
+      "momento": 0.5
     }
   ],
   "codigo_completo": "ejemplo.py",
@@ -80,8 +86,58 @@
   },
   "estado": {
     "codigo_verificado": true,
-    "audio_grabado": false,
-    "video_generado": false,
+    "audio_grabado": true,
+    "video_generado": true,
     "publicado": false
+  },
+  "visual": {
+    "tipo": "tarjetas",
+    "titular": [
+      "Python es una",
+      "calculadora"
+    ],
+    "ancho_tarjeta": 300,
+    "tarjetas": [
+      {
+        "valor": "10",
+        "tipo": "a",
+        "color": "verde",
+        "entra_bloque": 2,
+        "en": 0.55
+      },
+      {
+        "valor": "3",
+        "tipo": "b",
+        "color": "rosa",
+        "entra_bloque": 2,
+        "en": 0.9
+      }
+    ],
+    "operadores": [
+      {
+        "texto": "+",
+        "entra_bloque": 3,
+        "en": 0.15,
+        "sale_bloque": 4,
+        "sale_en": 0.0
+      },
+      {
+        "texto": "×",
+        "entra_bloque": 4,
+        "en": 0.1,
+        "sale_bloque": 5,
+        "sale_en": 0.0
+      }
+    ],
+    "sale_bloque": 6,
+    "cierre": {
+      "izquierda": "+  −",
+      "derecha": "×  ÷",
+      "color_izq": "verde",
+      "color_der": "rosa",
+      "signo": "y",
+      "texto": "operaciones",
+      "siguiente": "Próximo: comparaciones"
+    }
   }
 }

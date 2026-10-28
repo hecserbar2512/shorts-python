@@ -272,7 +272,7 @@ def tarjetas(d, t, ctx):
         e = ease_out_back(clamp01((t - ti) / 0.5))
         a = clamp01((t - ti) / 0.25) * fuera
         col = COLORES[c["color"]]
-        w, h = 380 * (0.7 + 0.3 * e), 235 * (0.7 + 0.3 * e)
+        w, h = vis.get("ancho_tarjeta", 380) * (0.7 + 0.3 * e), 235 * (0.7 + 0.3 * e)
         cy = 470
         d.rounded_rectangle((cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2), radius=28,
                             fill=mix(CARD, BG, a), outline=mix(col, BG, a), width=5)
@@ -291,6 +291,19 @@ def tarjetas(d, t, ctx):
             if c.get("descripcion"):
                 d.text((cx, py + 62), c["descripcion"], font=font(POPPINS_M, 30),
                        fill=mix(GRAY, BG, clamp01(p * 2) * fuera), anchor="mm")
+
+    for op in vis.get("operadores", []):
+        t0, t1 = ctx.T[op["entra_bloque"]]
+        ti = t0 + op.get("en", 0.2) * (t1 - t0)
+        ts = ctx.T[op["sale_bloque"]][0] + op.get("sale_en", 0.0) if op.get("sale_bloque") else 1e9
+        if t < ti or t > ts + 0.3:
+            continue
+        e = ease_out_back(clamp01((t - ti) / 0.4))
+        a = clamp01((t - ti) / 0.2) * (1 - clamp01((t - ts) / 0.25)) * fuera
+        r = 52 * (0.5 + 0.5 * e)
+        d.ellipse((510 - r, 470 - r, 510 + r, 470 + r), fill=mix(AMBER, BG, a))
+        d.text((510, 470), op["texto"], font=font(POPPINS_B, 70 * (0.6 + 0.4 * e)),
+               fill=mix(DARK, AMBER, a), anchor="mm")
 
 
 def pulso(t, ctx):
