@@ -234,7 +234,7 @@ def progreso(d, t, ctx):
 
 def titular(d, t, ctx):
     vis = ctx.visual
-    t_fin = ctx.T[vis["entra_bloque"]][0]
+    t_fin = t_primera_entrada(vis, ctx)
     if t > t_fin:
         return
     e = ease_out_back(clamp01(t / 0.55))
@@ -244,6 +244,53 @@ def titular(d, t, ctx):
         col = WHITE if k == 0 else AMBER
         d.text((510, 440 + k * 125), txt, font=font(POPPINS_B, 104 * escala),
                fill=mix(col, BG, a), anchor="mm")
+
+
+def t_primera_entrada(vis, ctx):
+    if vis.get("tipo") == "tarjetas":
+        return min(t_tarjeta(c, ctx) for c in vis["tarjetas"])
+    return ctx.T[vis["entra_bloque"]][0]
+
+
+def t_tarjeta(c, ctx):
+    t0, t1 = ctx.T[c["entra_bloque"]]
+    return t0 + c.get("en", 0.5) * (t1 - t0)
+
+
+def tarjetas(d, t, ctx):
+    vis = ctx.visual
+    t_sale = ctx.T[vis["sale_bloque"]][0] + 0.05
+    if t > t_sale + 0.35:
+        return
+    fuera = 1 - clamp01((t - t_sale) / 0.3)
+    n = len(vis["tarjetas"])
+    xs = [510] if n == 1 else [300 + i * (420 // max(1, n - 1)) for i in range(n)]
+    for c, cx in zip(vis["tarjetas"], xs):
+        ti = t_tarjeta(c, ctx)
+        if t < ti:
+            continue
+        e = ease_out_back(clamp01((t - ti) / 0.5))
+        a = clamp01((t - ti) / 0.25) * fuera
+        col = COLORES[c["color"]]
+        w, h = 380 * (0.7 + 0.3 * e), 235 * (0.7 + 0.3 * e)
+        cy = 470
+        d.rounded_rectangle((cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2), radius=28,
+                            fill=mix(CARD, BG, a), outline=mix(col, BG, a), width=5)
+        d.text((cx, cy - 25), c["valor"], font=font(MONO_B, 78 * (0.7 + 0.3 * e)),
+               fill=mix(WHITE, CARD, a), anchor="mm")
+        tt = ti + 0.45
+        if t >= tt:
+            p = clamp01((t - tt) / 0.3)
+            pe = ease_out_back(p)
+            f = font(MONO_B, 46 * (0.8 + 0.2 * pe))
+            pw = f.getlength(c["tipo"]) + 70
+            py = cy + h / 2 - 8
+            d.rounded_rectangle((cx - pw / 2, py - 35, cx + pw / 2, py + 35), radius=35,
+                                fill=mix(col, BG, clamp01(p * 2) * fuera))
+            d.text((cx, py), c["tipo"], font=f, fill=mix(DARK, col, clamp01(p * 2) * fuera), anchor="mm")
+            if c.get("descripcion"):
+                d.text((cx, py + 62), c["descripcion"], font=font(POPPINS_M, 30),
+                       fill=mix(GRAY, BG, clamp01(p * 2) * fuera), anchor="mm")
 
 
 def pulso(t, ctx):
@@ -326,13 +373,14 @@ def cierre(d, t, ctx):
     a = clamp01((t - t0) / 0.4)
     e = ease_out_back(clamp01((t - t0) / 0.6))
     cy = 430
-    for txt, cxp, col in ((c["izquierda"], 300, GREEN), (c["derecha"], 720, AMBER)):
+    for txt, cxp, col in ((c["izquierda"], 300, COLORES[c.get("color_izq", "verde")]),
+                          (c["derecha"], 720, COLORES[c.get("color_der", "ambar")])):
         f = font(MONO_B, 56 * (0.85 + 0.15 * e))
         w, h = f.getlength(txt) + 80, 110
         d.rounded_rectangle((cxp - w / 2, cy - h / 2, cxp + w / 2, cy + h / 2), radius=h / 2,
                             fill=mix(col, BG, a))
         d.text((cxp, cy), txt, font=f, fill=mix(DARK, col, a), anchor="mm")
-    d.text((510, cy), "+", font=font(POPPINS_B, 84), fill=mix(WHITE, BG, a), anchor="mm")
+    d.text((510, cy), c.get("signo", "+"), font=font(POPPINS_B, 84), fill=mix(WHITE, BG, a), anchor="mm")
     d.text((510, 560), c["texto"], font=font(POPPINS_B, 80 * (0.9 + 0.1 * e)),
            fill=mix(WHITE, BG, a), anchor="mm")
     d.text((510, 650), c["siguiente"], font=font(POPPINS_M, 42), fill=mix(GRAY, BG, a), anchor="mm")
@@ -357,7 +405,7 @@ def texto_linea(j, t, ctx):
 
 
 def codigo(d, t, ctx):
-    fm = font(MONO_B, 80)
+    fm = font(MONO_B, ctx.code_size)
     cw = fm.getlength("M")
     act, ta_act = 0, -1.0
     for ta, j in ctx.ev["activas"]:
@@ -444,7 +492,10 @@ def fotograma(t, ctx):
     progreso(d, t, ctx)
     if ctx.visual:
         titular(d, t, ctx)
-        caja(d, t, ctx)
+        if ctx.visual.get("tipo") == "tarjetas":
+            tarjetas(d, t, ctx)
+        else:
+            caja(d, t, ctx)
         cierre(d, t, ctx)
     codigo(d, t, ctx)
     salida(d, t, ctx)
@@ -471,7 +522,9 @@ def main():
         total = max(x["fin"] for x in lst) + 1.2
     else:
         T, total = tiempos_estimados(ficha)
-    ctx = SimpleNamespace(T=T, total=total, ev=construir_eventos(ficha, T), subs=preparar_subs(ficha, T),
+    mx = max([len(l) for b in ficha["bloques"] for l in b.get("codigo_en_pantalla", [])] + [1])
+    tam = min(80, (X1 - CODE_X - 25) / (mx * 0.602))
+    ctx = SimpleNamespace(code_size=tam, T=T, total=total, ev=construir_eventos(ficha, T), subs=preparar_subs(ficha, T),
                           visual=ficha.get("visual"), estatica=capa_estatica(ficha, a.logo))
 
     if a.frame is not None:

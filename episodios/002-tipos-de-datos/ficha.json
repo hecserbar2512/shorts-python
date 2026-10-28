@@ -8,7 +8,8 @@
       "id": 1,
       "texto": "Ya sabemos guardar datos en variables. Pero no todos los datos son iguales. Python distingue varios tipos.",
       "codigo_en_pantalla": [],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "codigo_en_pantalla": [
         "edad = 25"
       ],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
         "edad = 25",
         "nombre = \"Ana\""
       ],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 4,
@@ -35,7 +38,8 @@
         "nombre = \"Ana\"",
         "print(type(edad))"
       ],
-      "salida": "<class 'int'>"
+      "salida": "<class 'int'>",
+      "momento": 0.5
     },
     {
       "id": 5,
@@ -46,7 +50,8 @@
         "print(type(edad))",
         "print(type(nombre))"
       ],
-      "salida": "<class 'int'>\n<class 'str'>"
+      "salida": "<class 'int'>\n<class 'str'>",
+      "momento": 0.5
     },
     {
       "id": 6,
@@ -57,7 +62,8 @@
         "print(type(edad))",
         "print(type(nombre))"
       ],
-      "salida": "<class 'int'>\n<class 'str'>"
+      "salida": "<class 'int'>\n<class 'str'>",
+      "momento": 0.5
     }
   ],
   "codigo_completo": "ejemplo.py",
@@ -77,8 +83,43 @@
   },
   "estado": {
     "codigo_verificado": true,
-    "audio_grabado": false,
-    "video_generado": false,
+    "audio_grabado": true,
+    "video_generado": true,
     "publicado": false
+  },
+  "visual": {
+    "tipo": "tarjetas",
+    "titular": [
+      "¿Qué tipos",
+      "de datos hay?"
+    ],
+    "tarjetas": [
+      {
+        "valor": "25",
+        "tipo": "int",
+        "descripcion": "número entero",
+        "color": "ambar",
+        "entra_bloque": 2,
+        "en": 0.55
+      },
+      {
+        "valor": "\"Ana\"",
+        "tipo": "str",
+        "descripcion": "texto",
+        "color": "azul",
+        "entra_bloque": 3,
+        "en": 0.55
+      }
+    ],
+    "sale_bloque": 6,
+    "cierre": {
+      "izquierda": "int",
+      "derecha": "str",
+      "color_izq": "ambar",
+      "color_der": "azul",
+      "signo": "o",
+      "texto": "número o texto",
+      "siguiente": "Próximo: operaciones"
+    }
   }
 }
