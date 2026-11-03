@@ -377,6 +377,36 @@ def caja(d, t, ctx):
             d.text((cx, cy), nombre, font=f, fill=mix(GREEN, BG, at), anchor="mm")
 
 
+def reto(d, t, ctx):
+    vis = ctx.visual
+    r = vis["reto"]
+    t0, t1 = ctx.T[r["entra_bloque"]]
+    ti = t0 + r.get("en", 0.1) * (t1 - t0)
+    if t < ti:
+        return
+    e = ease_out_back(clamp01((t - ti) / 0.55))
+    a = clamp01((t - ti) / 0.3)
+    f = font(POPPINS_B, 36)
+    w = f.getlength(r["etiqueta"]) + 70
+    d.rounded_rectangle((510 - w / 2, 300, 510 + w / 2, 360), radius=30, fill=mix(AMBER, BG, a))
+    d.text((510, 330), r["etiqueta"], font=f, fill=mix(DARK, AMBER, a), anchor="mm")
+    y0 = 380
+    d.rounded_rectangle((150, y0, 930, y0 + 200), radius=26, fill=mix(CARD, BG, a),
+                        outline=mix(EDGE, BG, a), width=4)
+    mf = font(MONO_B, 58)
+    for k, l in enumerate(r["lineas"]):
+        x = 200
+        for tt, val in lex(l, PythonLexer()):
+            val = val.rstrip("\n")
+            if val:
+                d.text((x, y0 + 56 + k * 84), val, font=mf, fill=mix(color_token(tt), CARD, a), anchor="lm")
+                x += mf.getlength(val)
+    p = clamp01((t - ti - 0.5) / 0.4)
+    d.text((510, 626), r["pregunta"], font=font(POPPINS_B, 60 * (0.9 + 0.1 * ease_out_back(p))),
+           fill=mix(WHITE, BG, p), anchor="mm")
+    d.text((510, 684), r["pie"], font=font(POPPINS_M, 30), fill=mix(GRAY, BG, p), anchor="mm")
+
+
 def cierre(d, t, ctx):
     vis = ctx.visual
     c = vis["cierre"]
@@ -509,7 +539,10 @@ def fotograma(t, ctx):
             tarjetas(d, t, ctx)
         else:
             caja(d, t, ctx)
-        cierre(d, t, ctx)
+        if "cierre" in ctx.visual:
+            cierre(d, t, ctx)
+        if "reto" in ctx.visual:
+            reto(d, t, ctx)
     codigo(d, t, ctx)
     salida(d, t, ctx)
     subtitulos(d, t, ctx)

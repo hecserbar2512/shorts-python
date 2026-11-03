@@ -8,7 +8,8 @@
       "id": 1,
       "texto": "A veces un programa tiene que decidir. Y para decidir, primero compara.",
       "codigo_en_pantalla": [],
-      "salida": null
+      "salida": null,
+      "momento": 0.5
     },
     {
       "id": 2,
@@ -17,7 +18,8 @@
         "edad = 20",
         "print(edad >= 18)"
       ],
-      "salida": "True"
+      "salida": "True",
+      "momento": 0.5
     },
     {
       "id": 3,
@@ -26,7 +28,8 @@
         "edad = 20",
         "print(edad >= 18)"
       ],
-      "salida": "True"
+      "salida": "True",
+      "momento": 0.5
     },
     {
       "id": 4,
@@ -36,7 +39,8 @@
         "print(edad >= 18)",
         "print(edad == 18)"
       ],
-      "salida": "True\nFalse"
+      "salida": "True\nFalse",
+      "momento": 0.5
     },
     {
       "id": 5,
@@ -46,17 +50,30 @@
         "print(edad >= 18)",
         "print(edad == 18)"
       ],
-      "salida": "True\nFalse"
+      "salida": "True\nFalse",
+      "momento": 0.5
     },
     {
       "id": 6,
-      "texto": "Verdadero o falso. Esa es la base para decidir. En el próximo vídeo, el if.",
+      "texto": "Verdadero o falso. Esa es la base para decidir.",
       "codigo_en_pantalla": [
         "edad = 20",
         "print(edad >= 18)",
         "print(edad == 18)"
       ],
-      "salida": "True\nFalse"
+      "salida": "True\nFalse",
+      "momento": 0.5
+    },
+    {
+      "id": 7,
+      "texto": "Ahora te toca. Si edad vale quince, ¿qué mostrará print de edad mayor o igual que dieciocho? Respóndeme en los comentarios. Y en el próximo vídeo, el if.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "print(edad >= 18)",
+        "print(edad == 18)"
+      ],
+      "salida": "True\nFalse",
+      "momento": 0.5
     }
   ],
   "codigo_completo": "ejemplo.py",
@@ -79,5 +96,49 @@
     "audio_grabado": false,
     "video_generado": false,
     "publicado": false
+  },
+  "ejercicio": {
+    "enunciado": "Si edad vale 15, ¿qué muestra print(edad >= 18)?",
+    "codigo": "ejercicio.py",
+    "solucion": "False",
+    "comentario_fijado": "Mini reto: edad = 15 → ¿qué muestra print(edad >= 18)? Respóndeme aquí 👇 (True o False). En el próximo vídeo te cuento la solución y empezamos con el if."
+  },
+  "visual": {
+    "tipo": "tarjetas",
+    "titular": [
+      "¿Verdadero",
+      "o falso?"
+    ],
+    "tarjetas": [
+      {
+        "valor": "True",
+        "tipo": "verdadero",
+        "descripcion": "20 >= 18",
+        "color": "verde",
+        "entra_bloque": 3,
+        "en": 0.5
+      },
+      {
+        "valor": "False",
+        "tipo": "falso",
+        "descripcion": "20 == 18",
+        "color": "rosa",
+        "entra_bloque": 5,
+        "en": 0.3
+      }
+    ],
+    "sale_bloque": 7,
+    "reto": {
+      "entra_bloque": 7,
+      "en": 0.05,
+      "etiqueta": "MINI RETO",
+      "lineas": [
+        "edad = 15",
+        "print(edad >= 18)"
+      ],
+      "pregunta": "¿Qué muestra?",
+      "pie": "Respóndeme en comentarios",
+      "siguiente": "Próximo: el if"
+    }
   }
 }
