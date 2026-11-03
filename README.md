@@ -12,3 +12,4 @@ Canal de YouTube Shorts "Código de Bolsillo": conceptos básicos de programaci�
 
 - No se guardan contraseñas, claves ni credenciales en este repositorio.
 - Cada código de ejemplo se ejecuta antes de publicar y su salida se comprueba.
+- Todos los episodios terminan con un **mini reto** para los comentarios (`ejercicio.py` + `ejercicio` en la ficha); su solución se da al principio del episodio siguiente.

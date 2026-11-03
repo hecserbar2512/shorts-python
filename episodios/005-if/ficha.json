@@ -1,0 +1,96 @@
+{
+  "id": "005",
+  "concepto": "El if",
+  "lenguaje": "python",
+  "voz": "propia",
+  "bloques": [
+    {
+      "id": 1,
+      "texto": "Solución del reto anterior: False, porque quince no es mayor ni igual que dieciocho. Y ahora, a decidir.",
+      "codigo_en_pantalla": [],
+      "salida": null,
+      "momento": 0.5
+    },
+    {
+      "id": 2,
+      "texto": "Para decidir, Python usa if, que significa si. Escribo if, la condición y dos puntos.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "if edad >= 18:"
+      ],
+      "salida": null,
+      "momento": 0.5
+    },
+    {
+      "id": 3,
+      "texto": "Debajo, con un espacio al principio, va lo que pasa si es verdadera. Eso se llama sangría.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "if edad >= 18:",
+        "    print(\"Adulto\")"
+      ],
+      "salida": null,
+      "momento": 0.5
+    },
+    {
+      "id": 4,
+      "texto": "Edad vale veinte, la condición es verdadera, y Python muestra Adulto.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "if edad >= 18:",
+        "    print(\"Adulto\")"
+      ],
+      "salida": "Adulto",
+      "momento": 0.5
+    },
+    {
+      "id": 5,
+      "texto": "Si fuera falsa, Python se salta esa línea y no muestra nada.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "if edad >= 18:",
+        "    print(\"Adulto\")"
+      ],
+      "salida": "Adulto",
+      "momento": 0.5
+    },
+    {
+      "id": 6,
+      "texto": "Ahora te toca. Si edad vale diecisiete, ¿qué mostrará este programa? Respóndeme en los comentarios. Y en el próximo vídeo, el else.",
+      "codigo_en_pantalla": [
+        "edad = 20",
+        "if edad >= 18:",
+        "    print(\"Adulto\")"
+      ],
+      "salida": "Adulto",
+      "momento": 0.5
+    }
+  ],
+  "codigo_completo": "ejemplo.py",
+  "salida_esperada": "Adulto",
+  "ejercicio": {
+    "enunciado": "Si edad vale 17, ¿qué muestra el programa?",
+    "codigo": "ejercicio.py",
+    "solucion": "No muestra nada (17 no es mayor ni igual que 18, así que el if no se ejecuta)",
+    "comentario_fijado": "Mini reto: edad = 17 → ¿qué muestra el programa? Respóndeme aquí 👇. En el próximo vídeo te cuento la solución y vemos el else."
+  },
+  "metadatos": {
+    "titulo": "El if en Python: tomar decisiones (en menos de 1 minuto)",
+    "descripcion": "Aprende a usar if en Python para que tu programa tome decisiones, y qué es la sangría.\n\nMini reto: si edad = 17, ¿qué muestra el programa? Respóndeme en los comentarios 👇\n\nCódigo del vídeo:\nedad = 20\nif edad >= 18:\n    print(\"Adulto\")\n\nPróximo vídeo: el else.\n\n#Shorts #Python #Programación",
+    "etiquetas": [
+      "python",
+      "if",
+      "condicionales",
+      "programación",
+      "aprender a programar",
+      "principiantes",
+      "python para principiantes"
+    ]
+  },
+  "estado": {
+    "codigo_verificado": true,
+    "audio_grabado": false,
+    "video_generado": false,
+    "publicado": false
+  }
+}
