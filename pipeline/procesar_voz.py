@@ -62,6 +62,10 @@ def detectar_tramos(x, sr, on=-44.0, off=-48.0, unir=0.20, minimo=0.10):
     n = len(x) // hop
     env = np.array([20 * np.log10(np.sqrt(np.mean(xb[i * hop:(i + 1) * hop] ** 2)) + 1e-9)
                     for i in range(n)])
+    suelo = np.percentile(env, 5)
+    if suelo < -68:  # grabación muy baja con silencio casi digital: umbrales relativos
+        on, off = suelo + 8, suelo + 4
+        print("grabación muy baja (suelo %.0f dB): umbral %.0f dB" % (suelo, on))
     activo, st = np.zeros(n, bool), False
     for i in range(n):
         if not st and env[i] > on:
@@ -89,6 +93,12 @@ def detectar_tramos(x, sr, on=-44.0, off=-48.0, unir=0.20, minimo=0.10):
 
 
 def limpiar_y_nivelar(x, sr, tramos, silencio_db=-42, pre=0.05, post=0.18, objetivo=0.045):
+    rms_t = [np.sqrt(np.mean(x[int(a * sr):int(b * sr)] ** 2)) for a, b in tramos]
+    med = float(np.median(rms_t))
+    if med < 0.01:  # voz muy baja: subida global previa para no topar con el límite de nivelación
+        pre_gain = 0.03 / med
+        print("voz muy baja: ganancia previa %.1f dB" % (20 * np.log10(pre_gain)))
+        x = x * pre_gain
     g = np.full(len(x), 10 ** (silencio_db / 20))
     for a, b in tramos:
         a, b = max(0, a - pre), min(len(x) / sr, b + post)

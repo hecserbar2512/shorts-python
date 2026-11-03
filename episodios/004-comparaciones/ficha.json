@@ -93,8 +93,8 @@
   },
   "estado": {
     "codigo_verificado": true,
-    "audio_grabado": false,
-    "video_generado": false,
+    "audio_grabado": true,
+    "video_generado": true,
     "publicado": false
   },
   "ejercicio": {
