@@ -152,19 +152,32 @@ def construir_eventos(ficha, T):
     return ev
 
 
-def preparar_subs(ficha, T):
+def tiempo_en_voz(tramos, frac):
+    """Instante correspondiente a la fracción `frac` del tiempo realmente hablado."""
+    total = sum(z - a for a, z in tramos)
+    objetivo = clamp01(frac) * total
+    for a, z in tramos:
+        if objetivo <= z - a:
+            return a + objetivo
+        objetivo -= z - a
+    return tramos[-1][1]
+
+
+def preparar_subs(ficha, T, TR=None):
+    TR = TR or {}
     subs = []
     for b in ficha["bloques"]:
         t0, t1 = T[b["id"]]
+        tramos = TR.get(b["id"]) or [(t0, t1)]
         palabras = b["texto"].split()
         pesos = [len(w) + (4 if w[-1] in ".:;?!" else 2 if w[-1] == "," else 0) for w in palabras]
         tot = float(sum(pesos))
         acc = 0.0
         items = []
         for w, p in zip(palabras, pesos):
-            ws = t0 + (t1 - t0) * acc / tot
+            ws = tiempo_en_voz(tramos, acc / tot)
             acc += p
-            items.append((w, ws, t0 + (t1 - t0) * acc / tot))
+            items.append((w, ws, tiempo_en_voz(tramos, acc / tot)))
         chunks, cur = [], []
         for it in items:
             if cur and (len(" ".join(x[0] for x in cur + [it])) > 22 or len(cur) >= 4):
@@ -178,8 +191,11 @@ def preparar_subs(ficha, T):
         if cur:
             chunks.append(cur)
         for i, c in enumerate(chunks):
-            ce = chunks[i + 1][0][1] if i + 1 < len(chunks) else c[-1][2] + 0.25
-            subs.append((c[0][1], ce, c))
+            sig = chunks[i + 1][0][1] if i + 1 < len(chunks) else None
+            fin = c[-1][2] + 0.25
+            if sig is not None and sig - c[-1][2] < 0.5:
+                fin = sig  # pausa corta: el subtítulo se mantiene hasta el siguiente
+            subs.append((c[0][1], fin, c))
     return subs
 
 
@@ -514,7 +530,15 @@ def salida(d, t, ctx):
         d.text((X0 + 40 + cw * 1.6, yc), txt[:n], font=fm, fill=GREEN, anchor="lm")
 
 
+def hay_voz(t, ctx, margen_ini=0.12, margen_fin=0.45):
+    if not ctx.voz:
+        return True
+    return any(a - margen_ini <= t <= z + margen_fin for a, z in ctx.voz)
+
+
 def subtitulos(d, t, ctx):
+    if not hay_voz(t, ctx):
+        return
     for cs, ce, c in ctx.subs:
         if cs <= t < ce:
             e = ease_out_back(clamp01((t - cs) / 0.18))
@@ -565,12 +589,14 @@ def main():
     if a.tiempos:
         lst = json.load(open(a.tiempos, encoding="utf-8"))
         T = {x["id"]: (x["inicio"], x["fin"]) for x in lst}
+        TR = {x["id"]: x["tramos"] for x in lst if x.get("tramos")}
         total = max(x["fin"] for x in lst) + 1.2
     else:
         T, total = tiempos_estimados(ficha)
+        TR = {}
     mx = max([len(l) for b in ficha["bloques"] for l in b.get("codigo_en_pantalla", [])] + [1])
     tam = min(80, (X1 - CODE_X - 25) / (mx * 0.602))
-    ctx = SimpleNamespace(code_size=tam, T=T, total=total, ev=construir_eventos(ficha, T), subs=preparar_subs(ficha, T),
+    ctx = SimpleNamespace(code_size=tam, voz=[tuple(x) for v in TR.values() for x in v], T=T, total=total, ev=construir_eventos(ficha, T), subs=preparar_subs(ficha, T, TR),
                           visual=ficha.get("visual"), estatica=capa_estatica(ficha, a.logo))
 
     if a.frame is not None:

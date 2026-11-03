@@ -149,7 +149,8 @@ def repartir_bloques(ficha, tramos, t0, lam=1.5):
         cortes.append((i, j))
         j = i
     cortes.reverse()
-    return [{"id": b["id"], "inicio": round(tramos[i][0] - t0, 2), "fin": round(tramos[j - 1][1] - t0, 2)}
+    return [{"id": b["id"], "inicio": round(tramos[i][0] - t0, 2), "fin": round(tramos[j - 1][1] - t0, 2),
+             "tramos": [[round(a - t0, 2), round(z - t0, 2)] for a, z in tramos[i:j]]}
             for b, (i, j) in zip(ficha["bloques"], cortes)]
 
 
@@ -183,7 +184,7 @@ def main():
     tiempos = repartir_bloques(ficha, tramos, t0)
     json.dump(tiempos, open(a.salida_tiempos, "w", encoding="utf-8"), indent=1)
     for t in tiempos:
-        print(t)
+        print({k: v for k, v in t.items() if k != "tramos"}, "tramos:", len(t["tramos"]))
 
 
 if __name__ == "__main__":
